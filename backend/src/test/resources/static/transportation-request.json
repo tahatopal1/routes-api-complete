@@ -1,0 +1,17 @@
+{
+  "origin": {
+    "id": 2,
+    "locationType": "AIRPORT"
+  },
+  "destination": {
+    "id": 3,
+    "locationType": "AIRPORT"
+  },
+  "transportationType": "FLIGHT",
+  "opDays": [
+    1,
+    3,
+    5,
+    7
+  ]
+}

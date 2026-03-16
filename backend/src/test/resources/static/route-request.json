@@ -1,0 +1,11 @@
+{
+  "origin": {
+    "id": 1,
+    "locationType": "AIRPORT"
+  },
+  "destination": {
+    "id": 2,
+    "locationType": "VENUE"
+  },
+  "searchDate": "2026-03-09"
+}
