@@ -41,7 +41,7 @@ git clone https://github.com/tahatopal1/routes-api-complete
 
 2. Build and spin up the containers:
 ```bash
-docker compose up --d
+docker compose up -d
 ```
 
 *(Note: The initial build may take a few minutes as Docker fetches the database images and compiles the Java and React applications via multi-stage builds).*
