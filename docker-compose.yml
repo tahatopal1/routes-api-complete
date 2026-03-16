@@ -1,15 +1,14 @@
 version: '3.8'
 
 services:
-  # 1. The Database
   mysql-db:
     image: mysql:8.0
     container_name: case_study_db
     environment:
       MYSQL_DATABASE: routes_db
-      MYSQL_ROOT_PASSWORD: rootpassword # Required by the image, but our app won't use it
-      MYSQL_USER: vLUWqsSB              # Creates your specific user
-      MYSQL_PASSWORD: mvUkveLN          # Sets the password for your specific user
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: vLUWqsSB
+      MYSQL_PASSWORD: mvUkveLN
     ports:
       - "3306:3306"
     healthcheck:
@@ -17,14 +16,12 @@ services:
       timeout: 20s
       retries: 10
 
-  # 2. The Cache
   redis-cache:
     image: redis:7-alpine
     container_name: case_study_redis
     ports:
       - "6379:6379"
 
-  # 3. Your Spring Boot Backend
   backend-app:
     build:
       context: ./backend
@@ -33,7 +30,6 @@ services:
     ports:
       - "8080:8080"
     environment:
-      # Matches the exact URL, username, and password from your properties
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-db:3306/routes_db?allowPublicKeyRetrieval=true
       - SPRING_DATASOURCE_USERNAME=vLUWqsSB
       - SPRING_DATASOURCE_PASSWORD=mvUkveLN
@@ -45,13 +41,12 @@ services:
       redis-cache:
         condition: service_started
 
-  # 4. Your React Frontend (Vite)
   frontend-app:
     build:
       context: ./frontend
       dockerfile: Dockerfile
     container_name: case_study_frontend
     ports:
-      - "5173:80" # Maps the host port 5173 to Nginx's internal port 80
+      - "5173:80"
     depends_on:
       - backend-app
